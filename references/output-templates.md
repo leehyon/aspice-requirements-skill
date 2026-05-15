@@ -15,11 +15,18 @@
 | SWRS ID | Software Requirement | Domain | Parent SRS ID | Software Boundary | Derived | Rationale | Verification Method | Status | Issue |
 |---|---|---|---|---|---|---|---|---|---|
 
-## SWRS Writing Note
-
-SWRS items shall not be copied directly from SRS items. Each SWRS item shall describe software-relevant, externally observable behavior and shall include rationale explaining how it refines or allocates the parent SRS to software.
-
 ## Main Traceability Matrix
 
 | Trace ID | CRS ID | SRS ID | SWRS ID | Trace Status | Notes |
 |---|---|---|---|---|---|
+
+## Printable SRS and SWRS Templates
+
+For printable documents, do not use Markdown tables as the primary structure for SRS and SWRS.
+
+Use:
+
+- `assets/templates/srs.template.md` for System Requirements Specification documents.
+- `assets/templates/swrs.template.md` for Software Requirements Specification documents.
+
+Markdown tables may still be used for compact indexes, quality summaries, traceability matrices, or open issue lists, but the main SRS/SWRS requirement content should use section-based requirement blocks.
