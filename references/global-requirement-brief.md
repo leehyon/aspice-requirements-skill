@@ -19,7 +19,3 @@ Create the Global Requirement Brief before CRS, SRS, or SWRS generation.
 ## 10. Major Open Questions
 ## 11. Recommended Derivation Strategy
 ```
-
-## Multi-Document Briefing
-
-For a directory or document set, summarize the whole portfolio. Include module or subsystem grouping inferred from filenames, paths, or sections. Identify overlapping requirement areas and potential conflicts.

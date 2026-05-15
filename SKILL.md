@@ -30,8 +30,6 @@ Recommended priority:
 2. If no suitable skill is available, use external tools such as Docling, marker, GROBID, or equivalent tools.
 3. If neither installed skills nor external tools are available, use the lightweight reconstruction script in `scripts/reconstruct_document.py` on already extracted Markdown or text.
 
-The output from any PDF/document-processing skill or tool shall be normalized into this skill's workflow as reconstructed Markdown/text plus source references. The downstream workflow shall still create a Source Document Registry, Combined Document Analysis Model, Global Requirement Brief, CRS Working Set, SRS, SWRS, traceability, and open issues.
-
 ## Core Workflow
 
 Do not directly generate software requirements from raw PDF, raw Word, or unstructured full-document text.
@@ -63,8 +61,6 @@ When a directory or document set is provided:
 7. Preserve document IDs in all CRS source references.
 8. Prefer one coherent SRS and one coherent SWRS unless the user explicitly requests module-specific outputs.
 
-Do not create disconnected SRS/SWRS fragments for each file by default.
-
 ## When to Load References
 
 - Use `references/workflow.md` for the overall process.
@@ -78,8 +74,6 @@ Do not create disconnected SRS/SWRS fragments for each file by default.
 - Use `references/file-naming-convention.md` when naming generated files and exported artifacts.
 
 ## CRS Working Set
-
-Extract customer requirements by domain or section group, not by isolated sentence fragments.
 
 Each CRS Working Set item shall include:
 
@@ -123,7 +117,23 @@ Each SWRS item shall include:
 - Status
 - Issue
 
-Every SWRS item shall trace to at least one SRS item. SWRS shall focus on externally observable software behavior.
+Every SWRS item shall trace to at least one SRS item.
+
+## SRS-to-SWRS Transformation Principle
+
+When deriving SWRS items from SRS items, do not directly copy or mechanically reword the SRS text.
+
+SWRS shall be written from a software development perspective and shall describe externally observable software behavior at the software boundary. Use ISO/IEC/IEEE 29148-inspired requirement writing principles: clear stakeholder/software intent, atomicity, feasibility, verifiability, traceability, and explicit rationale for derived requirements.
+
+For each SRS-to-SWRS transformation, consider:
+
+- What software behavior is needed to satisfy the system requirement?
+- What are the relevant software inputs, outputs, states, modes, interfaces, data, diagnostics, timing, configuration, calibration, safety, or security aspects?
+- What behavior is externally observable and testable?
+- What remains system-level, hardware-level, or design-level and should not be forced into SWRS?
+- What information is missing and should become an open issue instead of being invented?
+
+The SWRS shall not be a copy of the SRS. It shall refine, allocate, or decompose the SRS into software-relevant requirements while preserving parent traceability.
 
 ## Requirement Quality Rules
 
@@ -156,27 +166,6 @@ Allowed trace status values: Complete, Missing SRS, Missing SWRS, System-only, N
 ## Output File Naming
 
 When generating files, use the filename rules in `references/file-naming-convention.md`.
-
-Default final filenames should follow this pattern:
-
-```text
-<portfolio-id>_srs_full-system_<date>.md
-<portfolio-id>_swrs_full-system_<date>.md
-<portfolio-id>_traceability-matrix_full-system_<date>.md
-<portfolio-id>_open-issues_full-system_<date>.md
-```
-
-If a formal CRS is requested, use:
-
-```text
-<portfolio-id>_crs_full-system_<date>.md
-```
-
-For intermediate CRS Working Set output, use:
-
-```text
-<portfolio-id>_crs-working-set_full-system_<date>.md
-```
 
 ## Anti-Hallucination Rules
 
